@@ -1,17 +1,17 @@
-
 class hash(object):
     class node():
-        def __init__(self,key):
+        def __init__(self,key=None):
             self.key=key
             self.next=None
 
-    def __init__(self):
-        map=[]
+    def __init__(self,size=100000,test=None):
+        self.size=size
+        if not test:
+            map=[]
 
-    def delete(self,key):
-        if key not in map:
-            return
-        map.remove(key)
-
-    def insert(self,key,value):
-        if not
+    def BKDRHash(self,word):
+        seed=131
+        hash=0
+        for i in word:
+            hash+=seed*hash+ord(i)
+        return hash%self.size
