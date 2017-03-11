@@ -18,8 +18,4 @@ class Solution(object):
         A[r],A[i+1]=A[i+1],A[r]
         return i+1
 
-a=[2,5,7,1,3,7,4,7,9,4,3,2,5,7]
-b=len(a)-1
-print b
-check=Solution()
-print check.quickSort(a,0,b)
+
