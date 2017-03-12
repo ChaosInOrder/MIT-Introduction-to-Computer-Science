@@ -5,6 +5,7 @@ class node():
         self.next = None
 
 a=node(["22",1,node()])
-b=node()
-if a.info:
-    print 1
+b="a,b"
+
+print filter(lambda c: c.isalpha(), b)
+print b

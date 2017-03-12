@@ -4,6 +4,8 @@ class node(object):
         self.info = info
         self.next = None
 
+class wordInfo(object):
+    def __init__(self):
 class hash(object):
     """
     Use BKDR Hash algorithm, and implement the extra credit
@@ -65,6 +67,22 @@ class hash(object):
         print "The key doesn't exist"
         return False
 
+    def increase(self,key):
+        if self.find(key):
+            hashNum = self.BKDRHash(key)
+            head = self.map[hashNum]
+            if head.info[0]==key:
+                print "Already first"
+                return
+            while head.next:
+                if head.next.info[0]==key:
+                    increase=head.next
+                    head.next=head.next.next
+                    increase.next = self.map[hashNum]
+                    self.map[hashNum] = increase
+                    return
+                head=head.next
+
     def getPos(self,head):
         res=[]
         while head:
@@ -79,9 +97,14 @@ class hash(object):
                 head=head.next
 
 a = "A human society is a group of people continued related to each other through continued relations, or a large social grouping sharing the same geographical or virtual territory, same interests, subject to the same political authority and dominant cultural expectations. Human societies are characterized by patterns of relationships social relations between individuals who share a distinctive culture and institutions. A given society may be described as the sum total of such relationships among its constituent members. In the social sciences, a larger society often evinces stratification and/or dominance patterns in subgroups. In so far as it is collaborative, a society can enable its members to benefit in ways that would not otherwise be possible on an individual basis; both individual and social common benefits can thus be distinguished, or in many cases found to overlap. A society can also consist of like-minded people governed by their own norms and values within a dominant, larger society. This is sometimes referred to as a subculture, a term used extensively within criminology: an organized group working together having a common interests, beliefs, or profession."
-b="b b b"
-text = a.split(" ")
+b="b b b a a d d"
+def textProcess(text):
+    info=text.split(" ")
+    for i in range(len(info)):
+        info[i]=filter(lambda c: c.isalpha(), info[i])
+    return info
 
-hashTable=hash(15,text)
+text = textProcess(a)
+
+hashTable=hash(1,text)
 hashTable.listAllKey()
-hashTable.find("A")
